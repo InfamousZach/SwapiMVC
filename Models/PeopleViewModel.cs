@@ -22,5 +22,16 @@ namespace SwapiMVC.Models
     
     [JsonPropertyName("url")]
     public string? Url { get; set; }
+
+// get Id from the given Url
+    public string? Id
+{
+    get
+    {
+        return Url?
+            .Split("/", StringSplitOptions.RemoveEmptyEntries)
+            .LastOrDefault();
+    }
+}
     }
 }

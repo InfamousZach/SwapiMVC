@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+
+namespace SwapiMVC.Models
+{
+    public class ResultsViewModel<TResult>
+    {
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
+
+        [JsonPropertyName("next")]
+        public string? Next { get; set; }
+
+        [JsonPropertyName("previous")]
+        public string? Previous { get; set; } 
+        
+        // Defined the results property
+        [JsonPropertyName("results")]
+        public IEnumerable<TResult> Results { get; set; } = null!;
+
+        // get next page and previous page numbers
+        public string? NextPageNum => Next?.Split("?page=").LastOrDefault();
+public string? PreviousPageNum => Previous?.Split("?page=").LastOrDefault();
+    }
+}
