@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SwapiMVC.Models
 {
@@ -23,6 +24,6 @@ namespace SwapiMVC.Models
 
         // get next page and previous page numbers
         public string? NextPageNum => Next?.Split("?page=").LastOrDefault();
-public string? PreviousPageNum => Previous?.Split("?page=").LastOrDefault();
+        public string? PreviousPageNum => Previous?.Split("?page=").LastOrDefault();
     }
 }
