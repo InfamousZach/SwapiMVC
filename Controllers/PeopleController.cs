@@ -20,8 +20,18 @@ namespace SwapiMVC.Controllers
             HttpResponseMessage response = await _httpClient.GetAsync(route);
             var viewModel = await response.Content.ReadFromJsonAsync<ResultsViewModel<PeopleViewModel>>();
 
-            return View(viewModel);
-                 
+            return View(viewModel);    
         } 
+
+        public async Task<IActionResult> Person([FromRoute] string id)
+        {
+            var response = await _httpClient.GetAsync($"people/{id}");
+            
+            if (id is null || response.IsSuccessStatusCode == false)
+                return RedirectToAction(nameof(Index));
+
+            var person = await response.Content.ReadFromJsonAsync<PeopleViewModel>();
+                return View(person);
+        }
     }
 }
